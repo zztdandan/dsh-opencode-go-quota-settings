@@ -1,0 +1,18 @@
+dsh-opencode-go-quota
+=====================
+
+This package is a modified fork of @astervolans/dsh-opencode-go-usage 1.5.0
+(https://github.com/Astervolans/dsh-opencode-go-usage), which is itself a fork
+of yumusb/dsh-opencode-go-usage (https://github.com/yumusb/dsh-opencode-go-usage).
+
+Original code: MIT License, Copyright (c) 2026 opencode-go-usage contributors.
+The original LICENSE file is kept verbatim in this repository.
+
+Changes in this fork:
+  - The quota UI is a `settings.section` page (Settings → OpenCode GO) instead
+    of a `sidebar.footer.action` widget; no sidebar widget is registered.
+  - Removed the npm registry update check (this package is distributed via git).
+  - Renamed the package, runtime id, HTTP route and chat command to avoid
+    colliding with the upstream plugin when both are installed.
+  - The runtime `x-opencode-session` injection (lib/opencode-session.js) and the
+    same-origin usage proxy are carried over unchanged in behaviour.
