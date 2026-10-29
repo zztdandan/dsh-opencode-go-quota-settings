@@ -1,5 +1,5 @@
 {
-  "name": "dsh-opencode-go-quota",
+  "name": "dsh-opencode-go-quota-settings",
   "version": "0.1.0",
   "description": "DSH plugin: OpenCode GO plan quota in Settings (no sidebar widget) — same-origin usage proxy for the official 5h/weekly/monthly windows plus a /opencode-go-quota command",
   "type": "module",
@@ -33,7 +33,7 @@
     "@deepseek-ai/dsh": ">=0.1.7-rc.1 <0.3.0"
   },
   "license": "MIT",
-  "repository": "github:zztdandan/dsh-opencode-go-quota",
+  "repository": "github:zztdandan/dsh-opencode-go-quota-settings",
   "dsh": {
     "bundle": {
       "patch": "./cordis.patch.yml"
