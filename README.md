@@ -17,6 +17,8 @@
 
 数据来源不变：host 端用你的 key 调官方 `GET https://opencode.ai/zen/go/v1/usage`，浏览器只访问同源代理，key 不进前端。
 
+![设置 → OpenCode GO](docs/quota-page.png)
+
 ## 安装
 
 先移除旧插件（避免设置页出现两份 OpenCode GO）：
@@ -48,9 +50,13 @@ OPENCODE_GO_API_KEY: sk-...
 
 ## 验证边界
 
-- 已做：`node --check` 语法检查；隔离 profile 中安装并启动，确认插件清单 active、`/dsh-opencode-go-quota/usage` 路由可达。
-- 未做：真实 OpenCode GO key 的端到端出数、浏览器内视觉验收（本机当前没有 GO key）。
-- 页面注册方式与已装的 Command Code / Codex 插件相同（`settings.section` + `ctx.locale` + `inject`），但 slot 行为仍需在真实宿主里目视确认。
+- 已在 DSH `0.2.1-rc.2` 的隔离 profile 中实测（2026-10-29）：
+  - 安装后启动正常，设置导航出现 **OpenCode GO** 项；
+  - `GET /dsh-opencode-go-quota/usage` 返回真实三窗口数据（rolling/weekly/monthly 的 `percent` 与 `resetsAt`）；
+  - Chromium 实测设置页渲染三张卡（94% / 98% / 99% 剩余，倒计时与进度条正确），中英文案均正常，无 console/page error；
+  - 斜杠命令列表中出现 `opencode-go-quota`；
+  - 左下角侧栏没有任何本插件入口（与上游 widget 的关键差异）。
+- 未做：额度触顶/401/订阅过期等异常分支的真实账号验证（`percent` 阈值配色按代码逻辑推定）。
 
 ## 回滚
 
