@@ -25,8 +25,10 @@
 
 ```bash
 dsh plugin --profile web remove @astervolans/dsh-opencode-go-usage
-dsh plugin --profile web add github:zztdandan/dsh-opencode-go-quota
+dsh plugin --profile web add dsh-opencode-go-quota
 ```
+
+（未使用 npm 时也可从源码安装：`dsh plugin --profile web add github:zztdandan/dsh-opencode-go-quota`。）
 
 配置凭据（默认变量名，可在插件配置里改 `apiKeyEnv`）：
 
