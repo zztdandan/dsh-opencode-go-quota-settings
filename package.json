@@ -1,6 +1,6 @@
 {
   "name": "dsh-opencode-go-quota-settings",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "DSH plugin: OpenCode GO plan quota in Settings (no sidebar widget) — same-origin usage proxy for the official 5h/weekly/monthly windows plus a /opencode-go-quota command",
   "type": "module",
   "main": "lib/index.js",
