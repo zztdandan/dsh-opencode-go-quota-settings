@@ -50,6 +50,19 @@ OPENCODE_GO_API_KEY: sk-...
 | `cacheMs` | `30000` | host 端上游缓存 TTL |
 | `injectSessionHeader` | `true` | 为 GO 网关聊天请求注入 `x-opencode-session` |
 
+## 发布（自动化）
+
+发布由 GitHub Actions 完成，规则是**版本号变了才发**：
+
+```bash
+npm version patch --no-git-tag-version
+VERSION=$(node -p "require('./package.json').version")
+git commit -am "chore: release v$VERSION"
+git push origin master
+```
+
+`Release` 工作流会检查 npm 上是否已有该版本：没有则 `npm publish --provenance`、打 `v<version>` tag、创建 GitHub Release；已有则跳过（幂等）。细节与各市场的跟随方式见 [docs/releasing.md](docs/releasing.md)。
+
 ## 验证边界
 
 - 已在 DSH `0.2.1-rc.2` 的隔离 profile 中实测（2026-10-29）：
