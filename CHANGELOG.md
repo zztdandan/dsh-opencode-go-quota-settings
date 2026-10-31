@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.1
+
+- Fix the model catalog error state: a failed `/v1/models` request now shows
+  the error instead of leaving the loading line under it.
+
 ## 0.3.0
 
 - **Model catalog in Settings.** Read the official Go `GET /v1/models` through
