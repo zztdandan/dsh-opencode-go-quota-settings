@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.1
+
+- Add a **Sync to Models** action for an already-configured key whose model
+  route is not bound yet (for example a `OPENCODE_GO_API_KEY` left by an older
+  version, or a DSH sign-in record). It only writes
+  `providers.<route>.apiKeyEnv`; the credential itself is untouched, so the
+  user does not have to paste the key again.
+
 ## 0.2.0
 
 - **Reuse the OpenCode GO key DSH already has.** The quota host resolves the

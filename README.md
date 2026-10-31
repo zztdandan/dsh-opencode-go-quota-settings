@@ -51,6 +51,7 @@ dsh plugin --profile web add dsh-opencode-go-quota-settings
 - 优先写入模型路由命名的引用（如 `OPENCODE_API_KEY`、自定义 `apiKeyEnv`）；模型使用登录凭据时写入兜底引用（默认 `OPENCODE_GO_API_KEY`）并把它绑定到模型路由，使用原生环境时写回 `OPENCODE_API_KEY`；
 - 如果模型路由还没有命名引用，页面会像模型页一样补上 `providers.opencode-go.apiKeyEnv`，把 key 绑定到 OpenCode Go；
 - 如果模型页里还没有 OpenCode Go，第一次保存会把该 provider 和 key 一起创建；
+- 已经配好 key（例如旧版本留下的 `OPENCODE_GO_API_KEY`，或 DSH 登录凭据）但模型页还没绑定？页面会显示 **同步到模型设置**，点一下即可，不需要重新粘贴 key；
 - 保存后立即绕过额度缓存并刷新，模型和额度都使用这把新 key。
 
 > 仍可用文件方式配置（与模型页写入的是同一个凭据域）：
@@ -93,6 +94,7 @@ git push origin master
   - 密钥同源的四条路径逐一验证：模型 `apiKeyEnv`、`llm-pi-ai/opencode-go` 登录凭据、原生 `OPENCODE_API_KEY`、兜底 `OPENCODE_GO_API_KEY`；前三条都无需再次配置；
   - 设置页保存密钥后，凭据写入模型使用的同一引用，额度请求立即改用新 key；
   - 模型页还没有 OpenCode Go 时，设置页首次保存会创建 `providers.opencode-go.apiKeyEnv`；保存后 **设置 → 模型** 出现 opencode-go 条目，与模型页保存效果一致；
+  - 已存在 key 但模型路由未绑定时，**同步到模型设置** 按钮只补配置、不重写凭据，点击后模型状态立即变为已就绪；
   - 斜杠命令列表中出现 `opencode-go-quota`；
   - 左下角侧栏没有任何本插件入口（与上游 widget 的关键差异）。
 - 测试用本地假网关模拟 `GET /v1/usage` 并记录 `Authorization`，未消耗真实 OpenCode GO 账号额度；真实网关的额度触顶/401/订阅过期等异常分支未做账号验证（`percent` 阈值配色按代码逻辑推定）。
