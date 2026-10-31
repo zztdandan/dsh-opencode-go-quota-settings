@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.3.0
+
+- **Model catalog in Settings.** Read the official Go `GET /v1/models` through
+  the host proxy and show context/output limits, modalities, tool/reasoning
+  capabilities, per-1M prices, peak multipliers, and protocols. Search, sort the
+  DSH default model first, and refresh manually; the host caches the catalog for
+  five minutes and invalidates it when the key or endpoint changes.
+- **Connection & refresh card.** Edit the gateway URL, auto-refresh interval,
+  host cache TTL, `x-opencode-session` injection, and whether the model and
+  diagnostics cards are shown. The card writes this plugin's own settings via
+  `settings/mutate`, matching the Plugins form, and applies live.
+- **Key fingerprint and console links.** Show a short SHA-256 fingerprint so
+  the quota key can be compared with the model key without exposing either
+  literal, plus links to the Console, Go docs, and status page.
+- **Diagnostics card.** Optional troubleshooting snapshot for the key source,
+  model route, session-header counters, and the last `llm/stream`; copyable as
+  JSON and never containing the key literal.
+- **Quota cards** now show the window's share of the monthly allowance and the
+  absolute reset time alongside the countdown, and surface non-`ok` statuses.
+- **Live session-header switch.** The fetch wrapper is installed once and the
+  `llm/stream` handler checks the current setting per call, so the toggle works
+  without re-applying the plugin.
+
 ## 0.2.1
 
 - Add a **Sync to Models** action for an already-configured key whose model
