@@ -58,6 +58,10 @@ dsh-go 的 App 端有两条路：插件有宿主 schema 时按字段生成**原�
 > 为什么不再占用输入框上方的状态条：那一行是 App 里最稀缺的位置，本插件的数据更新频率低，
 > 放进设置页就够了。原生表单也一并关掉，避免同一个插件出现两份设置入口。
 
+> 开发过程中踩到的坑（App 两条渲染路径、auto:false、hidden 字段、密钥绑定、
+> 模型白名单与刷新事件、本地实例与发布流程）整理在
+> [docs/development-pitfalls.md](docs/development-pitfalls.md)。
+
 ## 密钥：与模型设置同源
 
 插件不再要求你为额度单独复制一遍 key。它按 DSH 自己的 `opencode-go` 路由解析顺序读取：
