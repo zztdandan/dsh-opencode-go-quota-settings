@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.7.2
+
+- **Saving the switches now refreshes the model picker.** The settings write
+  already changed the served catalog, but an open picker kept its cached list;
+  the host now also emits `llm/adapters-updated`, which the App listens to for
+  exactly this refresh.
+
 ## 0.7.1
 
 - **No more false "未配置" right after a restart.** A freshly booted engine can

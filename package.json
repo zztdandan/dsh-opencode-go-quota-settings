@@ -1,6 +1,6 @@
 {
   "name": "dsh-opencode-go-quota-settings",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "DSH plugin: OpenCode GO quota, model manager and connection settings in one compact settings page (three quota windows, per-model enable switches with filters, key card, models, all connection fields) — reuses the opencode-go model key, writes the route's model allowlist, keeps the generated config form off where dsh-go shows the page, plus a same-origin usage proxy and a /opencode-go-quota command",
   "type": "module",
   "icon": "./icon.svg",
