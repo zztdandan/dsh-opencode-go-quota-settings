@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.5.0
+
+- **Native quota on the phone (`dshGo`).** The package now declares a dsh-go
+  native surface, so the App draws the quota itself instead of falling back to
+  a web page: a composer strip (`5h 剩 98% · 周 99%`, warn below 30%, bad below
+  10%) and a panel in the conversation's plugins tab with the three windows,
+  reset times, key state and a refresh action. Both reuse the host cache behind
+  the HTTP routes.
+- **Dropped the `apiKey` secret field.** The dsh-go bridge does not publish a
+  credential binding for plugin secrets, so the native form could only render a
+  permanently "needs plugin support" row. The key is set in Settings → Models →
+  OpenCode Go (native provider form) or in the plugin's web page; the panel
+  reports whether it is configured.
+- README documents the strip, the panel and where the key goes.
+
 ## 0.4.0
 
 - **DSH Go native settings page.** The App's native form is generated from the
