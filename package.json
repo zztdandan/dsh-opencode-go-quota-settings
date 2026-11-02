@@ -1,7 +1,7 @@
 {
   "name": "dsh-opencode-go-quota-settings",
-  "version": "0.5.0",
-  "description": "DSH plugin: OpenCode GO quota, model catalog and connection settings — a native dsh-go strip + panel that show the three quota windows on the phone, a fully labeled native settings form, the key reused from the opencode-go model route, official /v1/models metadata, and a same-origin usage proxy plus a /opencode-go-quota command",
+  "version": "0.6.0",
+  "description": "DSH plugin: OpenCode GO quota, model catalog and connection settings in one settings page (quota windows, key state, models, all connection fields) — reuses the opencode-go model key, keeps the generated config form off in favour of the page where dsh-go shows it, plus a same-origin usage proxy and a /opencode-go-quota command",
   "type": "module",
   "icon": "./icon.svg",
   "main": "lib/index.js",
@@ -51,40 +51,5 @@
   },
   "scripts": {
     "validate": "node scripts/validate.mjs"
-  },
-  "dshGo": {
-    "v": 1,
-    "title": {
-      "zh": "OpenCode GO 额度",
-      "en": "OpenCode GO quota"
-    },
-    "icon": "chart",
-    "contributes": {
-      "composer.strip": [
-        {
-          "id": "strip",
-          "icon": "chart",
-          "text": {
-            "zh": "OpenCode GO 额度",
-            "en": "OpenCode GO quota"
-          },
-          "panel": "quota"
-        }
-      ],
-      "panels": [
-        {
-          "id": "quota",
-          "title": {
-            "zh": "OpenCode GO 额度",
-            "en": "OpenCode GO quota"
-          },
-          "icon": "chart",
-          "placement": [
-            "session.tab",
-            "features"
-          ]
-        }
-      ]
-    }
   }
 }

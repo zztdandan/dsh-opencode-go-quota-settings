@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.6.0
+
+- **The plugin's own settings page is the one place in the App.** Like the
+  Command Code provider and Prime Memory, the plugin now calls
+  `ctx.settings.configure({ auto: false })`, so dsh-go renders the plugin's
+  `settings.section` page as a full-page web island instead of a generated
+  field list. Quota windows, key card, model catalog, diagnostics and all
+  connection fields live on that one page again.
+- **Removed the composer strip and the native panel.** The strip takes the
+  App's scarcest surface for data that changes slowly; nothing of the plugin
+  sits above the composer now, and the `dshGo` manifest is gone.
+- **Mobile layout for the settings page.** Below 560 px the grids collapse to
+  one column, inputs get a 34 px touch height and the account/key rows stack;
+  the connection card gained the model-catalog cache and request-timeout
+  fields so every setting is editable from the page.
+- Key entry is back where it belongs: the page's own key card (credential
+  store), still sharing the opencode-go model route's key.
+
 ## 0.5.0
 
 - **Native quota on the phone (`dshGo`).** The package now declares a dsh-go
