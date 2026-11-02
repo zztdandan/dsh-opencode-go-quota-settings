@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.4.0
+
+- **DSH Go native settings page.** The App's native form is generated from the
+  plugin's `Config` schema, so every setting now carries a Chinese
+  `description` (short title + one-line hint) and the page shows all ten fields
+  labelled instead of raw keys. Rewritten after the Command Code provider's
+  pattern (schema metadata first, UI second).
+- **`apiKey` secret field.** A `role('secret')` sibling of the
+  `credential-ref` `apiKeyEnv`; the App writes the literal to the host
+  credential store, so the key can be entered natively without ever landing in
+  the settings document. A literal that somehow arrives in config is honoured
+  as the highest-priority source.
+- **Two new settings:** `modelsCacheMs` (model catalog cache TTL) and
+  `requestTimeoutMs` (timeout for the usage/models calls), both wired into the
+  host caches and requests.
+- **Plugin display name.** `locale/zh.json` / `locale/en.json` now provide
+  `meta.title` and `meta.description`, so the App lists the plugin as
+  「OpenCode GO 额度」 with a real description and the new `icon.svg` instead of
+  the package name.
+- README: documents what the App shows natively and what stays web-only.
+
 ## 0.3.1
 
 - Fix the model catalog error state: a failed `/v1/models` request now shows

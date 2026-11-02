@@ -38,6 +38,22 @@ dsh plugin --profile web add dsh-opencode-go-quota-settings
 
 重启 dsh web，硬刷新浏览器。入口：**设置 → OpenCode GO**；对话里也可用 `/opencode-go-quota`。
 
+## 在 DSH Go（手机 App）里
+
+dsh-go 的原生界面不渲染网页插件页面，它按插件 `Config` schema 生成**原生设置表单**（seams 的
+`schema-config` 适配器接管 `settings.section`）。所以本插件把全部可调项都写进 schema，并补齐
+了字段标题、说明、`secret` 与 `credential-ref` 角色：
+
+- **设置 → 插件 → OpenCode GO → 设置** 直接出现 10 项，逐项有中文标题与说明：密钥变量名、
+  API 密钥、网关地址、额度缓存、刷新间隔、模型目录缓存、请求超时、会话头注入、显示模型目录、
+  显示诊断信息；改完即生效，不需要切到网页版。
+- **API 密钥**是 `role('secret')`，与同组的 `apiKeyEnv`（`role('credential-ref')`）配对：
+  App 把明文写进主机凭据服务，不落配置文档；插件下次请求就从同一引用读回，与网页版填密钥等价。
+- 插件名与简介来自 `locale/{zh,en}.json` 的 `meta.title` / `meta.description`，App 列表里显示
+  「OpenCode GO 额度」而不是包名。
+- 原生表单只承载「设置」；三段额度卡片、模型目录和诊断属于网页界面，手机上看数量仍用
+  `/opencode-go-quota`，或到网页版（或在 App 内以网页版入口）打开。
+
 ## 密钥：与模型设置同源
 
 插件不再要求你为额度单独复制一遍 key。它按 DSH 自己的 `opencode-go` 路由解析顺序读取：
@@ -106,10 +122,13 @@ dsh plugin --profile web add dsh-opencode-go-quota-settings
 
 | 键 | 默认 | 说明 |
 |---|---|---|
-| `apiKeyEnv` | `OPENCODE_GO_API_KEY` | **兜底**凭据引用；仅当模型路由没有 `apiKeyEnv`、没有登录凭据、也没有 `OPENCODE_API_KEY` 时使用 |
+| `apiKeyEnv` | `OPENCODE_GO_API_KEY` | **兜底**凭据引用；也是 `apiKey` 密钥的写入目标，仅当模型路由没有 `apiKeyEnv`、没有登录凭据、也没有 `OPENCODE_API_KEY` 时使用 |
+| `apiKey` | — | `role('secret')` 写入口：App/网页表单填的明文由主机凭据服务保存，不落配置文档 |
 | `baseUrl` | `https://opencode.ai/zen/go` | GO 网关地址；额度、模型目录和会话头共用 |
 | `cacheMs` | `30000` | host 端额度缓存 TTL；设置页保存密钥或点“刷新”会绕过 |
 | `refreshMs` | `60000` | 设置页自动刷新间隔（最小 15 秒） |
+| `modelsCacheMs` | `300000` | host 端模型目录缓存 TTL（最小 60 秒） |
+| `requestTimeoutMs` | `20000` | 调用 `/v1/usage`、`/v1/models` 的超时（1–120 秒） |
 | `injectSessionHeader` | `true` | 为 GO 网关聊天请求注入 `x-opencode-session`；可热开关 |
 | `showModels` | `true` | 设置页是否显示模型目录卡片 |
 | `showDiagnostics` | `false` | 设置页是否显示诊断卡片 |

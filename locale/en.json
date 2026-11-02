@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "OpenCode GO quota",
+    "description": "OpenCode GO plan quota windows (rolling 5h, weekly, monthly), the official model catalog, and connection settings in Settings; reuses the key from Settings → Models → OpenCode Go."
+  }
+}

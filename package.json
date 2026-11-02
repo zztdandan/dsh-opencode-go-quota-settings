@@ -1,17 +1,21 @@
 {
   "name": "dsh-opencode-go-quota-settings",
-  "version": "0.3.1",
-  "description": "DSH plugin: OpenCode GO quota, model catalog, and connection settings in Settings — reuses the built-in opencode-go model key, with a key field, official /v1/models metadata, and a same-origin usage proxy for the 5h/weekly/monthly windows plus a /opencode-go-quota command",
+  "version": "0.4.0",
+  "description": "DSH plugin: OpenCode GO quota, model catalog, and connection settings in Settings — reuses the built-in opencode-go model key, with a fully labeled native settings form (dsh-go), a key field written through the credential store, official /v1/models metadata, and a same-origin usage proxy for the 5h/weekly/monthly windows plus a /opencode-go-quota command",
   "type": "module",
+  "icon": "./icon.svg",
   "main": "lib/index.js",
   "exports": {
     ".": "./lib/index.js",
     "./client": "./lib/client.js",
+    "./locale/*.json": "./locale/*.json",
     "./package.json": "./package.json"
   },
   "files": [
     "lib",
+    "locale",
     "cordis.patch.yml",
+    "icon.svg",
     "docs",
     "CHANGELOG.md",
     "NOTICE"
@@ -25,7 +29,8 @@
     "quota",
     "settings",
     "plugin",
-    "cordis"
+    "cordis",
+    "dsh-go"
   ],
   "engines": {
     "node": ">=18"
