@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.7.1
+
+- **No more false "未配置" right after a restart.** A freshly booted engine can
+  answer "no API key" for a moment while its credential store warms up; the
+  page now retries that answer three times before showing it, and re-reads
+  when it becomes visible again (App brought to the foreground).
+- Smaller header: the long subtitle is gone and the title is one step smaller.
+
 ## 0.7.0
 
 - **Model manager.** The read-only catalog became a manager: search, capability
