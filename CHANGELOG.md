@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.7.0
+
+- **Model manager.** The read-only catalog became a manager: search, capability
+  filters (all / enabled / free / vision / reasoning / tools), per-model
+  enable switches, select-all / clear-all, and one save. Saving writes the
+  route's model allowlist into `llm-pi-ai` (`providers.<route>.models`)
+  through the settings service, so the model picker only offers what is
+  switched on; "Restore catalog" removes the list again. Models the installed
+  catalog cannot serve are marked and cannot be switched on.
+- **Smaller page.** Tighter spacing and type, quota cards in a three-up row on
+  a phone, a fixed-height key field, and the key card's duplicate copy removed.
+- New host routes: `GET /models` now returns `allowList` + `enabled` (and
+  `servable` per model); `POST /models` takes `{ enabled: [...] }` or
+  `{ restore: true }`.
+
 ## 0.6.0
 
 - **The plugin's own settings page is the one place in the App.** Like the
